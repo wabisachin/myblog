@@ -1,0 +1,8 @@
+
+<div class="user-post-content">
+    
+    <p>投稿日 : <%= post.created_at %></p>
+    <p>投稿内容 : <%= post.text %></p>
+        <%= link_to "【編集】",edit_post_path(post),class: "btn"  %>
+        <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class: "btn"  %>
+</div>

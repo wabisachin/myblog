@@ -1,0 +1,7 @@
+<div class = "new-post-wrapper">
+    <%= form_for @post do |f| %>
+        <%= f.text_area :text, placeholder:"入力してください", maxlength:400, size:"40x10", class:"text-content" %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.submit "投稿",  class:"btn-submit" %>
+    <% end %>
+</div>

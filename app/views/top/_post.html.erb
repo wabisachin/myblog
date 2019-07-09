@@ -1,0 +1,13 @@
+
+<div class="post-content">
+    <p><%= post.user.nickname %></p>
+    <p>投稿内容 : <%= post.text %></p>
+    <% if current_user && current_user.id == post.user.id %>
+        <%= link_to "【編集】",edit_post_path(post), class: "btn-edit" %>
+        <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class:"btn-delete"  %>
+    <% end %>
+    
+    <% if user_signed_in? %>
+        <%= link_to "いいね",post_likes_path(post), method: :post %> 
+    <% end %>
+</div>

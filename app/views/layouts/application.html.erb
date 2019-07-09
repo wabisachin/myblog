@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myblog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="blog-header">
+      <div class="blog-title-wrapper">
+        <% if user_signed_in? %>
+          <%= link_to "#{current_user.nickname}さんのblog", root_path, class: "blog-title header-link" %>
+        <% else %>
+          <%= link_to "blog", root_path, class: "blog-title header-link" %>
+        <% end %>
+      </div>
+      <div class="blog-navigation">
+        <%= flash[:notice] %>
+        <% if user_signed_in? %>
+          <ul>
+            <li><%= link_to "ログアウト",destroy_user_session_path, method: :delete,class:"header-link" %></li>
+            <li><%= link_to "投稿",new_post_path, class:"header-link"%></li>
+            <li><%= link_to "マイページ",user_path(current_user),class:"header-link" %></li>
+          </ul>
+          
+        <% else %>
+          <ul>
+            <li><%= link_to "サインイン",user_session_path %></li>
+            <li><%= link_to "新規登録",new_user_registration_path %></li>
+          </ul>
+        
+        <% end %>
+        
+        
+      </div>
+    </header>
+    
+    <div class="contents-wrapper">
+      <%= yield %>
+    </div>
+    
+    <footer></footer>
+    
+  </body>
+</html>

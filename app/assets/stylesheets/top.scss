@@ -1,0 +1,24 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-title p{
+    text-align:center;
+}
+
+.post-content {
+    border:groove;
+    width:50%;
+    margin:10px auto;
+    
+}
+
+.btn-submit {
+    display:block;
+    
+}
+
+.text-content {
+    font-size:20px;
+}
+

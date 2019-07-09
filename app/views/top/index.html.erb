@@ -1,0 +1,11 @@
+<div class="post-wrapper">
+    <div class="post-title">
+        <p>[最新の投稿一覧]</p>
+    </div>
+    <div class="post-contents">
+        <%= render partial: "post",collection: @posts %>
+    </div>
+    
+    <%= paginate(@posts) %>
+</div>
+

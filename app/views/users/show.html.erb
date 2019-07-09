@@ -1,0 +1,30 @@
+<div class = "mypage-wrapper">
+    <div class = "profile">
+        <div class="profile-title">
+            <p>[あなたのプロフィール]</p>
+            <%= link_to "【編集】",edit_user_path(current_user), class: "btn"  %>
+        </div>
+        <div class = "profile-contents">
+            <% if @user.image.attached? %>
+                <img src= "<%= rails_blob_path(@user.image) %>",width="40", height= "40">
+            <% else %>
+                <img src= "assets/1.png",width="40", height= "40">
+            <% end %>
+            <p><%= @user.nickname %> さん</p>
+            <p>年齢 : <%= @user.age %></p>
+            <p>趣味 : <%= @user.hobby %></p>
+            <p>自己紹介 : <%= @user.introduction %></p>
+        </div>
+    </div>
+    
+    <div class="login-user-posts-wrapper">
+        <div class="posts-title">
+            <p>[あなたの投稿]</p>
+        </div>
+        <div class="login-user-posts">
+            <%= render partial: "post", collection: @posts %>
+        </div>
+    </div>
+
+</div>
+
