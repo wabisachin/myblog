@@ -25,6 +25,17 @@
             <%= render partial: "post", collection: @posts %>
         </div>
     </div>
+    
+    <div class="liked-posts-wrapper">
+        <div class="liked_posts-title">
+            <p>[あなたが「いいね」した投稿]</p>
+        </div>
+        <div class="liked_post">
+            <%= render partial: "liked_post", collection: @liked_posts %>
+        </div>
+    </div>
+    
+    
 
 </div>
 
