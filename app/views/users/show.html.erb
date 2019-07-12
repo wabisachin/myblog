@@ -1,7 +1,13 @@
 <div class = "mypage-wrapper">
     <div class = "profile">
         <div class="profile-title">
-            <p>[あなたのプロフィール]</p>
+            <% if current_user.id == @user.id %>
+                <p>[あなたのプロフィール]</p> 
+            <% else %>
+            <!-- user_name変数の追加-->
+                <% user_name = @user.nickname %>
+                <%= simple_format(user_name + "さんのプロフィール") %>
+            <% end %>
             <%= link_to "【編集】",edit_user_path(current_user), class: "btn"  %>
         </div>
         <div class = "profile-contents">
@@ -19,7 +25,11 @@
     
     <div class="login-user-posts-wrapper">
         <div class="posts-title">
-            <p>[あなたの投稿]</p>
+            <% if current_user.id == @user.id %>
+                <p>[あなたの投稿]</p> 
+            <% else %>
+                <%= simple_format(user_name + "さんの投稿") %>
+            <% end %>
         </div>
         <div class="login-user-posts">
             <%= render partial: "post", collection: @posts %>
@@ -28,7 +38,11 @@
     
     <div class="liked-posts-wrapper">
         <div class="liked_posts-title">
-            <p>[あなたが「いいね」した投稿]</p>
+            <% if current_user.id == @user.id %>
+                <p>[あなたがいいねした投稿]</p> 
+            <% else %>
+                <%= simple_format(user_name) + "さんがいいねした投稿"%>
+            <% end %>
         </div>
         <div class="liked_post">
             <%= render partial: "liked_post", collection: @liked_posts %>

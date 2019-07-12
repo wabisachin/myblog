@@ -1,6 +1,6 @@
 
 <div class="post-content">
-    <p><%= post.user.nickname %></p>
+    <%= link_to "#{post.user.nickname} さん", user_path(post.user) %>
     <p>投稿内容 : <%= post.text %></p>
     <% if current_user && current_user.id == post.user.id %>
         <%= link_to "【編集】",edit_post_path(post), class: "btn-edit" %>
@@ -8,6 +8,7 @@
     <% end %>
     
     <% if user_signed_in? %>
-        <%= link_to "いいね",post_likes_path(post), method: :post %> 
+        <%= link_to "いいね",post_likes_path(post), method: :post %>
+        <span class="good_count"><%= post.liked_user.length %></span>
     <% end %>
 </div>

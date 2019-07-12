@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-    before_action :prohibit_other_user, only: [:show,:edit,:update]
+    before_action :prohibit_other_user, only: [:edit,:update]
     before_action :authenticate_user!
     
     def show
-        @user = User.find(current_user.id)
-        @posts = Post.where(user_id: current_user.id)
+        @user = User.find(params[:id])
+        @posts = Post.where(user_id: @user.id).order(updated_at: "DESC")
         @liked_posts = @user.liked_post
     end
     
