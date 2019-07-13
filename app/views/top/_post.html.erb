@@ -10,5 +10,6 @@
     <% if user_signed_in? %>
         <%= link_to "いいね",post_likes_path(post), method: :post %>
         <span class="good_count"><%= post.liked_user.length %></span>
+        <%= link_to "いいねの削除", "/posts/#{post.id}/likes/#{current_user.id}", method: :delete %>
     <% end %>
 </div>

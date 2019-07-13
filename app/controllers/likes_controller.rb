@@ -5,4 +5,13 @@ class LikesController < ApplicationController
         redirect_to root_path
     end
     
+    def destroy
+        like = Like.find_by(user_id: params[:id], post_id: params[:post_id])
+        if like 
+            like.destroy
+            redirect_to root_path
+        end
+    end
+    
+    
 end
