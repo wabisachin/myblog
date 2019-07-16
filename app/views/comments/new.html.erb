@@ -1,0 +1,19 @@
+<div class="new-comment-wrapper">
+    <div class="new-comment-container">
+        <div class= "commented-post">
+            <p>投稿ユーザー : <%= @user.nickname %> さん</p>
+            <P>投稿内容：<%= @post.text %></P>
+        </div>
+        
+        <div class="new-comment">
+            <!-- ここに送信するコメントを付け加えていく-->
+            <%= form_for [@post,@comment] do |f| %>
+                <%= f.label(:comment, "コメント内容") %>
+                <%= f.text_field :text, placeholder: "コメントを入力して下さい" %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :post_id, value: @post.id %>
+                <%= f.submit "コメントする", class:"submit-comment" %>
+            <% end %>
+        </div>
+    </div>
+</div>

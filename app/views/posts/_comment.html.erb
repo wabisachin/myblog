@@ -1,0 +1,8 @@
+<div class="comment">
+    <%= link_to @user.nickname, user_path(@user) %>
+    <p>コメント内容 : <%= comment.text %></p>
+    <% if current_user && current_user.id == comment.user.id %>
+        <% post_commented = comment.post %>
+        <%= link_to "コメントを削除",comment_path(comment), method: :delete %>
+    <% end %>
+</div>

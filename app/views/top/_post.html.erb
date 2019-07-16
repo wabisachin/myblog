@@ -2,6 +2,7 @@
 <div class="post-content">
     <%= link_to "#{post.user.nickname} さん", user_path(post.user) %>
     <p>投稿内容 : <%= post.text %></p>
+    <%= link_to "投稿の詳細", "/posts/#{post.id}" %>
     <% if current_user && current_user.id == post.user.id %>
         <%= link_to "【編集】",edit_post_path(post), class: "btn-edit" %>
         <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class:"btn-delete"  %>
@@ -11,5 +12,6 @@
         <%= link_to "いいね",post_likes_path(post), method: :post %>
         <span class="good_count"><%= post.liked_user.length %></span>
         <%= link_to "いいねの削除", "/posts/#{post.id}/likes/#{current_user.id}", method: :delete %>
+        <%= link_to "コメント", "/posts/#{post.id}/comments/new" %>
     <% end %>
 </div>

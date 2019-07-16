@@ -1,8 +1,15 @@
 class PostsController < ApplicationController
     
     before_action :authenticate_post_user, only: [:update,:edit,:destroy]
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:show]
     #新規投稿画面の作成
+    
+    def show 
+        @post = Post.find(params[:id])
+        @user = @post.user
+        @comments = @post.comments.order(created_at: "DESC")
+    end
+    
     def new
         @post = Post.new
     end
@@ -32,6 +39,14 @@ class PostsController < ApplicationController
         redirect_to :root
     end
     
+    
+    
+    #ここからprivate
+    private
+    def post_params
+        params.require(:post).permit(:user_id, :text)
+    end
+    
     def authenticate_post_user
         post = Post.find(params[:id])
         
@@ -39,11 +54,5 @@ class PostsController < ApplicationController
             flash[:notice] = "他ユーザーの投稿は編集できません"
             redirect_to root_path
         end
-    end
-    
-    #ここからprivate
-    private
-    def post_params
-        params.require(:post).permit(:user_id, :text)
     end
 end
