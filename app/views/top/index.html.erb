@@ -1,11 +1,17 @@
-<div class="post-wrapper">
-    <div class="post-title text-center">
-        <p class="bg-warning">[最新の投稿一覧]</p>
-    </div>
-    <div class="post-contents">
-        <%= render partial: "post",collection: @posts %>
-    </div>
+<div class="posts-wrapper bg-warning">
+    <div class="posts-container container">
+        <div class="post-title text-center">
+            <p class="bg-warning">[最新の投稿一覧]</p>
+        </div>
+        <!--投稿一覧の取得-->
+        <div class="post-contents">
+            <%= render partial: "post",collection: @posts %>
+        </div>
+        <!--ページネーションの記述-->
+        <div class="text-center">
+            <%= paginate(@posts) %>
+        </div>
     
-    <%= paginate(@posts) %>
+    
 </div>
 

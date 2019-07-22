@@ -4,46 +4,61 @@
     <title>Myblog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
 
   <body>
-    <header class="blog-header">
-      <div class="blog-title-wrapper">
-        <% if user_signed_in? %>
-          <%= link_to "#{current_user.nickname}さんのblog", root_path, class: "blog-title header-link" %>
-        <% else %>
-          <%= link_to "blog", root_path, class: "blog-title header-link" %>
-        <% end %>
-      </div>
-      <div class="blog-navigation">
-        <%= flash[:notice] %>
-        <% if user_signed_in? %>
-          <ul>
-            <li><%= link_to "ログアウト",destroy_user_session_path, method: :delete,class:"header-link" %></li>
-            <li><%= link_to "投稿",new_post_path, class:"header-link"%></li>
-            <li><%= link_to "マイページ",user_path(current_user),class:"header-link" %></li>
-          </ul>
+    <header>
+      
+      <nav class="site-header navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
           
-        <% else %>
-          <ul>
-            <li><%= link_to "サインイン",user_session_path %></li>
-            <li><%= link_to "新規登録",new_user_registration_path %></li>
+          <button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".target">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <% if user_signed_in? %>
+            <%= link_to "#{current_user.nickname}さんのblog", root_path, class: "blog-title header-link navbar-brand" %>
+          <% else %>
+            <%= link_to "blog", root_path, class: "blog-title header-link navbar-brand" %>
+          <% end %>
+         
+        </div>
+        
+        
+        <div class="collapse navbar-collapse target">
+          <ul class="nav navbar-nav navbar-right">
+            
+            <% if user_signed_in? %>
+              <li class="active"><%= link_to "ログアウト",destroy_user_session_path, method: :delete, class:"header-link" %></li>
+              <li><%= link_to "投稿",new_post_path, class:"header-link"%></a></li>
+              <li><%= link_to "マイページ",user_path(current_user),class:"header-link" %></a></li>
+            <% else %>
+              <li class="active"><%= link_to "サインイン",user_session_path %></li>
+              <li><%= link_to "新規登録",new_user_registration_path %></li>
+            <% end %>
           </ul>
+        </div>
         
-        <% end %>
+         <!--フラッシュの表示-->
+        <%= flash[:notice] %>
         
-        
-      </div>
+      </nav>
     </header>
     
-    <div class="contents-wrapper">
+    <div class="contents-wrapper ">
       <%= yield %>
     </div>
     
     <footer></footer>
     
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
   </body>
 </html>

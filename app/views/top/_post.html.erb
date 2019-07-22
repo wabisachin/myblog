@@ -1,9 +1,9 @@
 
 <div class="post-content">
     <% if post.user.image.attached? %>
-        <img src= "<%= rails_blob_path(post.user.image) %>",width="40", height= "40">
+        <img src= "<%= rails_blob_path(post.user.image) %>",class="img-circle",width="40", height= "40">
     <% else %>
-        <img src= "assets/1.png",width="40", height= "40">
+        <img src= "assets/1.png",class="img-circle",width="40", height= "40">
     <% end %>
     
     
@@ -16,9 +16,13 @@
     <% end %>
     
     <% if user_signed_in? %>
-        <%= link_to "いいね",post_likes_path(post), method: :post %>
+        <%= link_to post_likes_path(post), method: :post do %>
+            <i class="far fa-thumbs-up"></i>
+        <% end %>
         <span class="good_count"><%= post.liked_user.length %></span>
-        <%= link_to "いいねの削除", "/posts/#{post.id}/likes/#{current_user.id}", method: :delete %>
+        <% if post.liked_user.pluck("id").include?(current_user.id) %>
+            <%= link_to "いいねの削除", "/posts/#{post.id}/likes/#{current_user.id}", method: :delete %>
+        <% end %>
         <%= link_to "コメント", "/posts/#{post.id}/comments/new" %>
     <% end %>
 </div>
