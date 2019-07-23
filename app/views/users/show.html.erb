@@ -1,55 +1,85 @@
 <div class = "mypage-wrapper">
-    <div class = "profile">
-        <div class="profile-title">
-            <% if current_user.id == @user.id %>
-                <p>[あなたのプロフィール]</p> 
-            <% else %>
-            <!-- user_name変数の追加-->
-                <% user_name = @user.nickname %>
-                <%= simple_format(user_name + "さんのプロフィール") %>
-            <% end %>
-            <%= link_to "【編集】",edit_user_path(current_user), class: "btn"  %>
+    <div class="mypage-container container">
+        
+        <!--bootstrapを用いてユーザー情報をパネルで表示-->
+        <div class = "profile panel panel-warning">
+            <div class="profile-title text-center panel-heading">
+                <% if current_user.id == @user.id %>
+                    <p>[あなたのプロフィール]</p> 
+                <% else %>
+                <!-- ユーザーネームの変数の追加-->
+                    <% user_name = @user.nickname %>
+                    <%= simple_format(user_name + "さんのプロフィール") %>
+                <% end %>
+                <%= link_to "【編集】",edit_user_path(current_user), class: "btn"  %>
+            </div>
+            <div class = "profile-contents panel-body">
+                <!--ユーザーのイメージ画像-->
+                <!--登録の有無による条件分岐1-->
+                <% if @user.image.attached? %>
+                    <img src= "<%= rails_blob_path(@user.image) %>",width="40", height= "40">
+                    <!--条件分岐２-->
+                <% else %>
+                    <img src= "assets/1.png",width="40", height= "40">
+                    <!--閉じタグ-->
+                <% end %>
+                <!--ユーザー名-->
+                <p><%= @user.nickname %> さん</p>
+                <!--年齢-->
+                <p>年齢 : <%= @user.age %></p>
+                <!--趣味-->
+                <p>趣味 : <%= @user.hobby %></p>
+                <!--自己紹介-->
+                <p>自己紹介 : <%= @user.introduction %></p>
+            </div>
         </div>
-        <div class = "profile-contents">
-            <% if @user.image.attached? %>
-                <img src= "<%= rails_blob_path(@user.image) %>",width="40", height= "40">
-            <% else %>
-                <img src= "assets/1.png",width="40", height= "40">
-            <% end %>
-            <p><%= @user.nickname %> さん</p>
-            <p>年齢 : <%= @user.age %></p>
-            <p>趣味 : <%= @user.hobby %></p>
-            <p>自己紹介 : <%= @user.introduction %></p>
+        
+        
+         <!--bootstrapを用いて『投稿一覧』と『いいねした投稿一覧』をタブで表示-->
+        <div class="login-user-contents">
+           
+            <!--タブ項目-->
+            <ul class="nav nav-tabs" style="margin-bottom:15px;">
+                <li class="active"><a href="#home" data-toggle="tab">ユーザーの投稿一覧</a></li>
+                <li><a href="#about" data-toggle="tab">いいねした投稿</a></li>
+            </ul>
+            <!--タブコンテンツ-->
+            <div class="tab-content">
+                <!--ユーザーの投稿一覧-->
+                <div class="user-posts-wrapper tab-pane active" id="home">
+                    <div class="posts-title">
+                        <% if current_user.id == @user.id %>
+                            <p>[あなたの投稿]</p> 
+                        <% else %>
+                            <%= simple_format(user_name + "さんの投稿") %>
+                        <% end %>
+                    </div>
+                    <div class="login-user-posts">
+                        <%= render partial: "post", collection: @posts %>
+                    </div>
+                </div>
+                <!--ユーザーがいいねした投稿-->
+                <div class="liking-posts-wrapper tab-pane" id="about">
+                    <div class="liking-posts-title">
+                        <% if current_user.id == @user.id %>
+                            <p>[あなたがいいねした投稿]</p> 
+                        <% else %>
+                            <%= simple_format(user_name) + "さんがいいねした投稿"%>
+                        <% end %>
+                    </div>
+                    <div class="liking-post">
+                        <%= render partial: "liked_post", collection: @liked_posts %>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
         </div>
+        
+        
+    
+    
     </div>
-    
-    <div class="login-user-posts-wrapper">
-        <div class="posts-title">
-            <% if current_user.id == @user.id %>
-                <p>[あなたの投稿]</p> 
-            <% else %>
-                <%= simple_format(user_name + "さんの投稿") %>
-            <% end %>
-        </div>
-        <div class="login-user-posts">
-            <%= render partial: "post", collection: @posts %>
-        </div>
-    </div>
-    
-    <div class="liked-posts-wrapper">
-        <div class="liked_posts-title">
-            <% if current_user.id == @user.id %>
-                <p>[あなたがいいねした投稿]</p> 
-            <% else %>
-                <%= simple_format(user_name) + "さんがいいねした投稿"%>
-            <% end %>
-        </div>
-        <div class="liked_post">
-            <%= render partial: "liked_post", collection: @liked_posts %>
-        </div>
-    </div>
-    
-    
-
 </div>
 
