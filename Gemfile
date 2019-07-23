@@ -71,3 +71,4 @@ gem 'devise'
 gem 'mini_magick'
 gem 'kaminari'
 gem 'i18n_generators', :group => :development
+gem "jquery-rails"

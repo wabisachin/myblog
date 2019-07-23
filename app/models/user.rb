@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :likes
   has_many :comments
   has_many :liked_post, through: :likes, source: :post
+  
+  
 end

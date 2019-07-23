@@ -14,15 +14,28 @@
         <%= link_to "【編集】",edit_post_path(post), class: "btn-edit" %>
         <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class:"btn-delete"  %>
     <% end %>
-    
+    <!--ユーザーログイン時はいいねのスイッチ機能をつける-->
     <% if user_signed_in? %>
-        <%= link_to post_likes_path(post), method: :post do %>
-            <i class="far fa-thumbs-up"></i>
+        <!--ログインユーザーがその投稿にいいねしているならばいいねdelete,していないならばcreate-->
+        <% unless post.liking_user?(current_user) %>
+            <%= link_to post_likes_path(post), method: :post do %>
+                <i class="far fa-thumbs-up"></i>
+            <% end %>
+        <% else %>
+            <%= link_to "/posts/#{post.id}/likes/#{current_user.id}", method: :delete do %>
+                <i class="fas fa-thumbs-up"></i>
+            <% end %>
         <% end %>
-        <span class="good_count"><%= post.liked_user.length %></span>
-        <% if post.liked_user.pluck("id").include?(current_user.id) %>
-            <%= link_to "いいねの削除", "/posts/#{post.id}/likes/#{current_user.id}", method: :delete %>
-        <% end %>
+        <!--いいねの数を表示-->
+         <span class="good_count"><%= post.liking_count %></span>
+        <!--コメントへのリンク先-->
         <%= link_to "コメント", "/posts/#{post.id}/comments/new" %>
+        
+    <!--ログインしていない時のunless文分岐-->
+    <% else %>
+        <%= link_to new_user_registration_path do %>
+            <i class="far fa-thumbs-up"></i>
+            <span class="good_count"><%= post.liking_count %></span>
+        <% end %>
     <% end %>
 </div>
