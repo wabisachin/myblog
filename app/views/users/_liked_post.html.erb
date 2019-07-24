@@ -3,7 +3,11 @@
     <p>投稿日 : <%= liked_post.created_at %></p>
     <p>投稿内容 : <%= liked_post.text %></p>
     <% if current_user.id == liked_post.user_id %>
-        <%= link_to "【編集】",edit_post_path(liked_post),class: "btn"  %>
-        <%= link_to "【削除】","/posts/#{liked_post.id}", method: :delete, class: "btn"  %>
+        <%= link_to edit_post_path(liked_post) do %> 
+            <button class="btn btn-success"><i class="glyphicon glyphicon-wrench" style="padding-right:5px;"></i>編集</button>
+        <% end %>
+        <%= link_to "/posts/#{liked_post.id}", method: :delete do %>
+            <button class="btn btn-danger"><i class="glyphicon glyphicon-trash" style="padding-right:5px;"></i>削除</button>
+        <% end %>
     <% end %>
 </div>

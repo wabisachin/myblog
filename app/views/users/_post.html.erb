@@ -4,7 +4,16 @@
     <p>投稿日 : <%= post.created_at %></p>
     <p>投稿内容 : <%= post.text %></p>
     <% if current_user.id == post.user.id %>
-        <%= link_to "【編集】",edit_post_path(post),class: "btn"  %>
-        <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class: "btn"  %>
+        <div class="btn-group">
+            <!--編集ボタン-->
+            <%= link_to edit_post_path(post)do %>
+                <button class="btn btn-success"><i class="glyphicon glyphicon-wrench" style="padding-right:5px;"></i>編集</button>
+            <% end %>
+            <!--削除ボタン-->
+            <%= link_to "/posts/#{post.id}", method: :delete do %>
+                <button class="btn btn-danger"><i class="glyphicon glyphicon-trash" style="padding-right:5px;"></i>削除</button>
+            <% end %>
+        </div>
+        
     <% end %>
 </div>

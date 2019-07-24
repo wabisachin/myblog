@@ -6,36 +6,58 @@
         <img src= "assets/1.png",class="img-circle",width="40", height= "40">
     <% end %>
     
-    
+    <!--ユーザー名-->
     <%= link_to "#{post.user.nickname} さん", user_path(post.user) %>
-    <p>投稿内容 : <%= post.text %></p>
-    <%= link_to "投稿の詳細", "/posts/#{post.id}" %>
-    <% if current_user && current_user.id == post.user.id %>
-        <%= link_to "【編集】",edit_post_path(post), class: "btn-edit" %>
-        <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class:"btn-delete"  %>
-    <% end %>
-    <!--ユーザーログイン時はいいねのスイッチ機能をつける-->
-    <% if user_signed_in? %>
-        <!--ログインユーザーがその投稿にいいねしているならばいいねdelete,していないならばcreate-->
-        <% unless post.liking_user?(current_user) %>
-            <%= link_to post_likes_path(post), method: :post do %>
-                <i class="far fa-thumbs-up"></i>
+    <!--投稿内容-->
+    <p><%= post.text %></p>
+    
+    <div class="btns-container">
+        <!--マイページを表示しているのがログイン中のユーザーかどうかでボタンの条件分岐-->
+        <% if current_user && current_user.id == post.user.id %>
+            <%= link_to "投稿の詳細", "/posts/#{post.id}" , class: "btn btn-info" %>
+            <!--コメントへのリンク先-->
+            <%= link_to "/posts/#{post.id}/comments/new", class:"btn btn-warning" do %>
+                <span><i class="glyphicon glyphicon-pencil"></i>コメント</span>
             <% end %>
+            
+            <div class="btn-group">
+                <%= link_to "【編集】",edit_post_path(post), class: "btn-edit btn btn-success " %>
+                <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class:"btn-delete btn btn-danger" %>
+            </div>
+            
+            
         <% else %>
-            <%= link_to "/posts/#{post.id}/likes/#{current_user.id}", method: :delete do %>
-                <i class="fas fa-thumbs-up"></i>
+            <%= link_to "投稿の詳細", "/posts/#{post.id}" , class: "btn btn-info" %>
+                <!--コメントへのリンク先-->
+            <%= link_to "/posts/#{post.id}/comments/new", class:"btn btn-warning" do %>
+                <span><i class="glyphicon glyphicon-pencil"></i>コメント</span>
             <% end %>
         <% end %>
-        <!--いいねの数を表示-->
-         <span class="good_count"><%= post.liking_count %></span>
-        <!--コメントへのリンク先-->
-        <%= link_to "コメント", "/posts/#{post.id}/comments/new" %>
         
-    <!--ログインしていない時のunless文分岐-->
-    <% else %>
-        <%= link_to new_user_registration_path do %>
-            <i class="far fa-thumbs-up"></i>
-            <span class="good_count"><%= post.liking_count %></span>
+        <!--ユーザーログイン時はいいねのスイッチ機能をつける-->
+    
+        <% if user_signed_in? %>
+            <!--ログインユーザーがその投稿にいいねしているならばいいねdelete,していないならばcreate-->
+            <% unless post.liking_user?(current_user) %>
+                <%= link_to post_likes_path(post), method: :post do %>
+                    <i class="far fa-thumbs-up"></i>
+                <% end %>
+            <% else %>
+                <%= link_to "/posts/#{post.id}/likes/#{current_user.id}", method: :delete do %>
+                    <i class="fas fa-thumbs-up"></i>
+                <% end %>
+            <% end %>
+            <!--いいねの数を表示-->
+             <span class="good_count"><%= post.liking_count %></span>
+            
+            
+        <!--ログインしていない時のunless文分岐-->
+        <% else %>
+            <%= link_to new_user_registration_path do %>
+                <i class="far fa-thumbs-up"></i>
+                <span class="good_count"><%= post.liking_count %></span>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
+    
 </div>

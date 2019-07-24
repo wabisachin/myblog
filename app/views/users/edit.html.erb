@@ -1,23 +1,57 @@
-<div class = "mypage-edit-wrapper">
-    <div class="edit-title">
-        <h3>ユーザー情報の編集</h3>
+
+<!--bootstrapでユーザー編集画面のパネル化-->
+<div class = "mypage-edit-wrapper container" style="padding-top:50px;">
+    <!--パネル構造の記述-->
+    <div class="panel panel-warning">
+        <!--パネルのヘッダー-->
+        <div class="edit-title panel-heading">
+            <h3>ユーザー情報の編集</h3>
+        </div>
+        <!--パネルのコンテンツ-->
+        <div class="edit-content panel-body">
+            <!--ユーザー情報の編集フォーム-->
+            <%= form_for @user do |f| %>
+                <div class="form-group">
+                    <%= f.label(:image,"ユーザー画像") %>
+                    <%= f.file_field :image, placeholder:"画像をアップロード" %>
+                    <%= f.label(:nickaname,"ユーザー名",style: "display:block;") %>
+                    <%= f.text_field :nickname, maxlength:20 %>
+                    <%= f.label(:age,"年齢",style: "display:block;") %>
+                    <%= f.number_field :age %>
+                    <%= f.label(:hobby,"趣味",style: "display:block;") %>
+                    <%= f.text_field :hobby, maxlength:50 %>
+                    <%= f.label(:introduction,"自己紹介",style: "display:block;") %>
+                    <%= f.text_area :introduction, maxlength:400 %>
+                </div>
+                
+                <div class="form-group">
+                    <%= f.submit "変更", class: "btn btn-info" %>
+                </div>
+                    
+            <% end %>
+        </div>
     </div>
     
-    <div class="edit-content">
+    
+    <!--<div class="edit-title">-->
+    <!--    <h3>ユーザー情報の編集</h3>-->
+    <!--</div>-->
+    
+    <!--<div class="edit-content">-->
         <!-- ユーザーの編集　-->
-        <%= form_for @user do |f| %>
-            <%= f.label(:image,"ユーザー画像") %>
-            <%= f.file_field :image, placeholder:"画像をアップロード" %>
-            <%= f.label(:nickaname,"ユーザー名:") %>
-            <%= f.text_field :nickname, maxlength:20 %>
-            <%= f.label(:age,"年齢:") %>
-            <%= f.number_field :age %>
-            <%= f.label(:hobby,"趣味:") %>
-            <%= f.text_field :hobby, maxlength:50 %>
-            <%= f.label(:introduction,"自己紹介:") %>
-            <%= f.text_area :introduction, maxlength:400 %>
-            <%= f.submit "変更" %>
-        <% end %>
-    </div>
+    <!--    <%= form_for @user do |f| %>-->
+    <!--        <%= f.label(:image,"ユーザー画像") %>-->
+    <!--        <%= f.file_field :image, placeholder:"画像をアップロード" %>-->
+    <!--        <%= f.label(:nickaname,"ユーザー名:") %>-->
+    <!--        <%= f.text_field :nickname, maxlength:20 %>-->
+    <!--        <%= f.label(:age,"年齢:") %>-->
+    <!--        <%= f.number_field :age %>-->
+    <!--        <%= f.label(:hobby,"趣味:") %>-->
+    <!--        <%= f.text_field :hobby, maxlength:50 %>-->
+    <!--        <%= f.label(:introduction,"自己紹介:") %>-->
+    <!--        <%= f.text_area :introduction, maxlength:400 %>-->
+    <!--        <%= f.submit "変更" %>-->
+    <!--    <% end %>-->
+    <!--</div>-->
     
 </div>

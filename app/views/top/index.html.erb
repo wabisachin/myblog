@@ -1,17 +1,36 @@
-<div class="posts-wrapper bg-warning">
-    <div class="posts-container container">
-        <div class="post-title text-center">
-            <p class="bg-warning">[最新の投稿一覧]</p>
+<div class="posts-wrapper">
+    <!--コンテナ-->
+    <div class="posts-container container" style="padding-top:50px;">
+        
+        <!--bootstrapの練習-->
+        <div class="bootstrap-practice">
+            <button class="btn-primary"><span class="glyphicon glyphicon-book" aria-hidden="true" style="padding-right:5px;"></span>Push me!</button>
         </div>
-        <!--投稿一覧の取得-->
-        <div class="post-contents">
-            <%= render partial: "post",collection: @posts %>
+        
+        <div class="row">
+            <div class="col-sm-3 hidden-xs bg-primary" style="height:60px;">side1</div>
+            <div class="col-sm-6 col-xs-6 bg-info">main</div>
+            <div class="col-sm-3 col-xs-6 bg-danger">side1</div>
         </div>
-        <!--ページネーションの記述-->
-        <div class="text-center">
-            <%= paginate(@posts) %>
+        
+        <!--bootstrapの練習終わり-->
+        <!--投稿一覧のパネル-->
+        <div class="panel panel-warning">
+            <!--パネルヘッダー-->
+            <div class="panel-heading">
+                <p class="text-center">投稿一覧</p>
+            </div>
+            <!--パネルコンテンツ-->
+            <div class="panel-body">
+                <div class="post-contents">
+                    <%= render partial: "post",collection: @posts %>
+                </div>
+                
+                <div class="text-center">
+                    <%= paginate(@posts) %>
+                </div>
+            </div>
         </div>
-    
-    
+        
 </div>
 

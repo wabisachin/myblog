@@ -4,6 +4,7 @@
         <!--bootstrapを用いてユーザー情報をパネルで表示-->
         <div class = "profile panel panel-warning">
             <div class="profile-title text-center panel-heading">
+                <!--プロフィールのタイトル名-->
                 <% if current_user.id == @user.id %>
                     <p>[あなたのプロフィール]</p> 
                 <% else %>
@@ -11,7 +12,7 @@
                     <% user_name = @user.nickname %>
                     <%= simple_format(user_name + "さんのプロフィール") %>
                 <% end %>
-                <%= link_to "【編集】",edit_user_path(current_user), class: "btn"  %>
+                
             </div>
             <div class = "profile-contents panel-body">
                 <!--ユーザーのイメージ画像-->
@@ -31,6 +32,10 @@
                 <p>趣味 : <%= @user.hobby %></p>
                 <!--自己紹介-->
                 <p>自己紹介 : <%= @user.introduction %></p>
+                
+                <%= link_to edit_user_path(current_user) do %>
+                    <button class="btn btn-primary"><i class="glyphicon glyphicon-wrench" style="padding-right:5px;"></i>プロフィールの編集</button>
+                <% end %>
             </div>
         </div>
         
