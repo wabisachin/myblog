@@ -14,7 +14,7 @@
   <body>
     <header>
       
-      <nav class="site-header navbar navbar-default navbar-fixed-top">
+      <nav class="site-header navbar-default navbar-fixed-top">
         <div class="navbar-header" style="overflow:hidden;">
           
           <button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".target">
@@ -37,11 +37,11 @@
           <ul class="nav navbar-nav navbar-right">
             
             <% if user_signed_in? %>
-              <li class="active"><%= link_to "ログアウト",destroy_user_session_path, method: :delete, class:"header-link" %></li>
+              <li><%= link_to "ログアウト",destroy_user_session_path, method: :delete, class:"header-link" %></li>
               <li><%= link_to "投稿",new_post_path, class:"header-link"%></a></li>
               <li><%= link_to "マイページ",user_path(current_user),class:"header-link" %></a></li>
             <% else %>
-              <li class="active"><%= link_to "サインイン",user_session_path %></li>
+              <li><%= link_to "サインイン",user_session_path %></li>
               <li><%= link_to "新規登録",new_user_registration_path %></li>
             <% end %>
           </ul>

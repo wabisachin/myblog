@@ -16,3 +16,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+    $('ul > li').hover(
+        function(){
+            $(this).css("background","#C0C0C0");
+        },
+        function(){
+            $(this).css("background","transparent");
+        })
+});

@@ -22,8 +22,32 @@
             <% end %>
             
             <div class="btn-group">
-                <%= link_to "【編集】",edit_post_path(post), class: "btn-edit btn btn-success " %>
-                <%= link_to "【削除】","/posts/#{post.id}", method: :delete, class:"btn-delete btn btn-danger" %>
+                <%= link_to "編集",edit_post_path(post), class: "btn-edit btn btn-success " %>
+                <!--bootstrapでモーダル遷移の削除ボタン-->
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_post">
+                	削除
+                </button>
+                
+                <!-- モーダル・ダイアログ -->
+                <div class="modal fade" id="delete_post" tabindex="-1">
+                	<div class="modal-dialog">
+                		<div class="modal-content">
+                			<div class="modal-header">
+                				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                				<h4 class="modal-title">コメントの削除</h4>
+                			</div>
+                			<div class="modal-body">
+                				<p>以下のコメントを削除して宜しいですか？</p>
+                				<p>投稿内容：<%= post.text %></p>
+                			</div>
+                			<div class="modal-footer">
+                				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                				<%= link_to "削除","/posts/#{post.id}", method: :delete, class:"btn-delete btn btn-danger" %>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+                <!--元コードここまで-->
             </div>
             
             
