@@ -1,3 +1,18 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// コメント投稿ページのscss
+.new-comment-wrapper {
+    padding-top: 50px;
+}
+
+.comment-text {
+    border-radius:5px;
+    border:1px solid #666666;
+    width:300px;
+}
+
+.submit {
+    margin-top:10px;
+}

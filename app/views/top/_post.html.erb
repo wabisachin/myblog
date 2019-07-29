@@ -1,9 +1,10 @@
 
 <div class="post-content">
+    
     <% if post.user.image.attached? %>
-        <img src= "<%= rails_blob_path(post.user.image) %>",class="img-circle",width="40", height= "40">
+        <img src= "<%= rails_blob_path(post.user.image) %>",width="40", height= "40">
     <% else %>
-        <img src= "assets/1.png",class="img-circle",width="40", height= "40">
+        <img src= "assets/1.png",width="40", height= "40">
     <% end %>
     
     <!--ユーザー名-->
@@ -59,5 +60,7 @@
             <% end %>
         <% end %>
     </div>
+
+
     
 </div>

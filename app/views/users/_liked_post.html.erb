@@ -1,7 +1,13 @@
 <div class="user-post-content">
+    <% if liked_post.user.image.attached? %>
+        <img src= "<%= rails_blob_path(liked_post.user.image) %>",width="40", height= "40">
+    <% else %>
+        <img src= "assets/1.png",width="40", height= "40">
+    <% end %>
+    <%= link_to "#{liked_post.user.nickname} さん", user_path(liked_post.user) %>
     
-    <p>投稿日 : <%= liked_post.created_at %></p>
     <p>投稿内容 : <%= liked_post.text %></p>
+    <p><%= liked_post.created_at %></p>
     <% if current_user.id == liked_post.user_id %>
         <%= link_to edit_post_path(liked_post) do %> 
             <button class="btn btn-success"><i class="glyphicon glyphicon-wrench" style="padding-right:5px;"></i>編集</button>

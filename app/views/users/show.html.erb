@@ -25,17 +25,20 @@
                     <!--閉じタグ-->
                 <% end %>
                 <!--ユーザー名-->
-                <p><%= @user.nickname %> さん</p>
+                <span><%= @user.nickname %> さん</span>
                 <!--年齢-->
                 <p>年齢 : <%= @user.age %></p>
                 <!--趣味-->
                 <p>趣味 : <%= @user.hobby %></p>
                 <!--自己紹介-->
                 <p>自己紹介 : <%= @user.introduction %></p>
-                
-                <%= link_to edit_user_path(current_user) do %>
-                    <button class="btn btn-primary"><i class="glyphicon glyphicon-wrench" style="padding-right:5px;"></i>プロフィールの編集</button>
+                <!--ログインユーザーのみユーザー情報編集画面へのリンク-->
+                <% if current_user.id == @user.id %>
+                    <%= link_to edit_user_path(current_user) do %>
+                        <button class="btn btn-primary"><i class="glyphicon glyphicon-wrench" style="padding-right:5px;"></i>プロフィールの編集</button>
+                    <% end %>
                 <% end %>
+                
             </div>
         </div>
         
@@ -45,33 +48,20 @@
            
             <!--タブ項目-->
             <ul class="nav nav-tabs" style="margin-bottom:15px;">
-                <li class="active"><a href="#home" data-toggle="tab">ユーザーの投稿一覧</a></li>
+                <li class="active"><a href="#home" data-toggle="tab"><%= @user.nickname + "さんの投稿一覧" %></a></li>
                 <li><a href="#about" data-toggle="tab">いいねした投稿</a></li>
             </ul>
             <!--タブコンテンツ-->
             <div class="tab-content">
                 <!--ユーザーの投稿一覧-->
                 <div class="user-posts-wrapper tab-pane active" id="home">
-                    <div class="posts-title">
-                        <% if current_user.id == @user.id %>
-                            <p>[あなたの投稿]</p> 
-                        <% else %>
-                            <%= simple_format(user_name + "さんの投稿") %>
-                        <% end %>
-                    </div>
                     <div class="login-user-posts">
                         <%= render partial: "post", collection: @posts %>
                     </div>
                 </div>
                 <!--ユーザーがいいねした投稿-->
                 <div class="liking-posts-wrapper tab-pane" id="about">
-                    <div class="liking-posts-title">
-                        <% if current_user.id == @user.id %>
-                            <p>[あなたがいいねした投稿]</p> 
-                        <% else %>
-                            <%= simple_format(user_name) + "さんがいいねした投稿"%>
-                        <% end %>
-                    </div>
+                    
                     <div class="liking-post">
                         <%= render partial: "liked_post", collection: @liked_posts %>
                     </div>

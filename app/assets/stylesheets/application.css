@@ -67,7 +67,7 @@
 .site-header {
     background-image:url("backgroundblue.jpeg");
     background-size:cover;
-    height:70px;
+    /*height:70px;*/
 }
 
 .contents-wrapper {

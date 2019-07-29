@@ -15,13 +15,13 @@
                     <%= f.label(:image,"ユーザー画像") %>
                     <%= f.file_field :image, placeholder:"画像をアップロード" %>
                     <%= f.label(:nickaname,"ユーザー名",style: "display:block;") %>
-                    <%= f.text_field :nickname, maxlength:20 %>
+                    <%= f.text_field :nickname, maxlength:20, class:"form_text" %>
                     <%= f.label(:age,"年齢",style: "display:block;") %>
-                    <%= f.number_field :age %>
+                    <%= f.number_field :age, class:"form_text" %>
                     <%= f.label(:hobby,"趣味",style: "display:block;") %>
-                    <%= f.text_field :hobby, maxlength:50 %>
+                    <%= f.text_field :hobby, maxlength:50, class:"form_text" %>
                     <%= f.label(:introduction,"自己紹介",style: "display:block;") %>
-                    <%= f.text_area :introduction, maxlength:400 %>
+                    <%= f.text_area :introduction, maxlength:400, class:"form_text" %>
                 </div>
                 
                 <div class="form-group">

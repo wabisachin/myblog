@@ -5,14 +5,26 @@
 
 // // 元のコード
 
-// .posts-wrapper {
-//   padding:50px;
-// }
+.posts-wrapper {
+  padding-top:50px;
+}
+
+.logo {
+    img {
+        height:400px;
+        width:100%;
+    }
+}
+
 .post-content {
-    border:groove;
-    width:50%;
+    padding-bottom:15px;
+    border-bottom:1px solid #F1F1F1;
     margin:10px auto;
     background-color:white;
+    
+    img {
+        margin:5px 5px;
+    }
     
 }
 
