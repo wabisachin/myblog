@@ -15,8 +15,14 @@ class PostsController < ApplicationController
     end
     
     def create
-        Post.create(post_params)
-        redirect_to :root
+        post = Post.create(post_params)
+        # 投稿に成功した場合、失敗した場合の分岐
+        if post.text.present?
+            redirect_to :root
+        else
+            flash[:notice] = "投稿するには最低１文字以上必要です"
+            redirect_to action: "new"
+        end
     end
     
     def edit
