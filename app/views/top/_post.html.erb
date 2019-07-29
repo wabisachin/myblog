@@ -11,6 +11,8 @@
     <%= link_to "#{post.user.nickname} さん", user_path(post.user) %>
     <!--投稿内容-->
     <p><%= post.text %></p>
+    <!--投稿時刻-->
+    <p><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
     
     <div class="btns-container">
         <!--マイページを表示しているのがログイン中のユーザーかどうかでボタンの条件分岐-->

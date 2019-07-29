@@ -20,7 +20,7 @@ class PostsController < ApplicationController
         if post.text.present?
             redirect_to :root
         else
-            flash[:notice] = "投稿するには最低１文字以上必要です"
+            flash[:danger] = "投稿するには最低１文字以上必要です"
             redirect_to action: "new"
         end
     end
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
         if post.update(post_params)
             redirect_to :root
         else 
-            flash[:notice] = "最低１文字以上入力して下さい"
+            flash[:danger] = "最低１文字以上入力して下さい"
             redirect_to action: "edit"
         end
     end
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
         post = Post.find(params[:id])
         
         unless post.user_id == current_user.id
-            flash[:notice] = "他ユーザーの投稿は編集できません"
+            flash[:alert] = "他ユーザーの投稿は編集できません"
             redirect_to root_path
         end
     end

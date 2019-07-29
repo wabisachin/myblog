@@ -5,7 +5,8 @@
         </div>
         
         <div class="post-content">
-            <p>投稿内容 : <%= @post.text %></p>
+            <p><%= @post.text %></p>
+            <p><%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
         </div>
         
         <div class="post-comments-container">

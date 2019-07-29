@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myblog</title>
+    <title>ひらめきmemo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
@@ -24,7 +24,9 @@
           </button>
           <div class="username-logo">
             <% if user_signed_in? %>
-              <%= link_to "#{current_user.nickname}さんのblog", root_path, class: "blog-title header-link navbar-brand" %>
+              <%= link_to root_path, class: "blog-title header-link navbar-brand" do %>
+                <span class="fz-16px"><i class="fas fa-cat pr-5px"></i>こんにちは, <%= current_user.nickname %> さん</span>
+              <% end %>
             <% else %>
               <%= link_to "blog", root_path, class: "blog-title header-link navbar-brand" %>
             <% end %>
@@ -48,7 +50,12 @@
         </div>
         
          <!--フラッシュの表示-->
-        <%= flash[:notice] %>
+        
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
         
       </nav>
     </header>

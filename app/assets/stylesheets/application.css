@@ -14,55 +14,8 @@
  *= require_self
  */
  
+/*デザインのCSS */
 
-/*a {*/
-/* text-decoration:none;*/
-/*}*/
- 
-/*.blog-header {*/
-/*    height:60px;*/
-/*    background-color:#00CC99;*/
-/*    color:white;*/
-/*    position:fixed;*/
-/*    width:100%;*/
-/*    z-index:10;*/
-    
-/*}*/
-
-/*.blog-title-wrapper {*/
-/*    float:left;*/
-/*}*/
-
-/*.blog-title {*/
-/*    position:relative;*/
-/*    padding:0px 20px;*/
-/*    line-height:60px;*/
-/*    font-size:20px;*/
-/*    font-weight:bold;*/
-/*}*/
-
-
-/*.blog-navigation {*/
-/*    position:relative;*/
-/*    float:right;*/
-/*}*/
-
-
-/*.blog-navigation li {*/
-/*    float:left;*/
-/*    margin:0px 20px;*/
-/*    list-style:none;*/
-/*    line-height:60px;*/
-/*}*/
-
-/*.header-link {*/
-/*    color:inherit;*/
-/*}*/
-
-/*.contents-wrapper {*/
-/*    position:relative;*/
-/*    top:60px;*/
-/*}*/
 
 .contents-wrapper {
     padding-top:50px;

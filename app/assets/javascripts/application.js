@@ -24,5 +24,7 @@ $(function(){
         },
         function(){
             $(this).css("background","transparent");
-        })
+        }
+    )
 });
+
