@@ -1,0 +1,13 @@
+ <!--いいね機能の非同期実装部分-->
+
+<div class="like-link" id="like-link-<%= post.id %>" style="display:inline-block;">
+  <% if current_user.likes.find_by(post_id: post.id) %>
+    <%= link_to post_like_path(post.id, current_user.id), method: :delete, remote: true do %>
+        <span class = "iine__button"><i class="fas fa-thumbs-up"></i>️<%= post.likes.count %><span>
+    <% end %>
+  <% else %>
+    <%= link_to post_likes_path(post.id,current_user.id), method: :post, remote: true do %>
+        <span class = "iine__button"><i class="far fa-thumbs-up"></i>️<%= post.likes.count %><span>
+    <% end %>
+  <% end %>
+</div>

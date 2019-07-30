@@ -30,6 +30,7 @@
                 	削除
                 </button>
                 
+                
                 <!-- モーダル・ダイアログ -->
                 <div class="modal fade" id="delete_post" tabindex="-1">
                 	<div class="modal-dialog">
@@ -49,7 +50,7 @@
                 		</div>
                 	</div>
                 </div>
-                <!--元コードここまで-->
+                
             </div>
             
             
@@ -65,17 +66,25 @@
     
         <% if user_signed_in? %>
             <!--ログインユーザーがその投稿にいいねしているならばいいねdelete,していないならばcreate-->
-            <% unless post.liking_user?(current_user) %>
-                <%= link_to post_likes_path(post), method: :post do %>
-                    <i class="far fa-thumbs-up"></i>
-                <% end %>
-            <% else %>
-                <%= link_to "/posts/#{post.id}/likes/#{current_user.id}", method: :delete do %>
-                    <i class="fas fa-thumbs-up"></i>
-                <% end %>
-            <% end %>
+            
+            <!--ここから元コード-->
+            <!--<% unless post.liking_user?(current_user) %>-->
+            <!--    <%= link_to post_likes_path(post), method: :post do %>-->
+            <!--        <i class="far fa-thumbs-up"></i>-->
+            <!--    <% end %>-->
+            <!--<% else %>-->
+            <!--    <%= link_to "/posts/#{post.id}/likes/#{current_user.id}", method: :delete do %>-->
+            <!--        <i class="fas fa-thumbs-up"></i>-->
+            <!--    <% end %>-->
+            <!--<% end %>-->
+            <!--元コード終わり-->
+            
+            <!--いいね機能のajax実装部分は別HTMLファイルの中に書く-->
+            <%= render "likes/like", post: post %>
+            
+            
             <!--いいねの数を表示-->
-             <span class="good_count"><%= post.liking_count %></span>
+            <!-- <span class="good_count"><%= post.liking_count %></span>-->
             
             
         <!--ログインしていない時のunless文分岐-->
@@ -85,8 +94,14 @@
                 <span class="good_count"><%= post.liking_count %></span>
             <% end %>
         <% end %>
+        
+        <!--コメント数の表示-->
+        <% if post.comments_count > 0 %>
+            <%= link_to "/posts/#{post.id}" do %>
+                <span><span class="far fa-comment" style="margin-right:2px;"></span><%= post.comments_count %></span>
+            <% end %>
+        <% end %>
+        
     </div>
-
-
     
 </div>

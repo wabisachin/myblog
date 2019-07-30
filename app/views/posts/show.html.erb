@@ -1,13 +1,28 @@
 <div class="post-detail-wrapper">
     <div class="post-detail-container">
-        <div class="post_user">
-            <%= link_to "#{@user.nickname}さんの投稿", user_path(@user) %>
-        </div>
+        <!--<div class="post_user">-->
+        <!--    <%= link_to "#{@user.nickname}さんの投稿", user_path(@user) %>-->
+        <!--</div>-->
         
+        <!--<div class="post-content">-->
+        <!--    <p><%= @post.text %></p>-->
+        <!--    <p><%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></p>-->
+        <!--</div>-->
         <div class="post-content">
+            <% if @post.user.image.attached? %>
+                <img src= "<%= rails_blob_path(@post.user.image) %>",width="40", height= "40">
+            <% else %>
+                <img src= "assets/1.png",width="40", height= "40">
+            <% end %>
+            
+            <!--ユーザー名-->
+            <%= link_to "#{@post.user.nickname} さん", user_path(@post.user) %>
+            <!--投稿内容-->
             <p><%= @post.text %></p>
+            <!--投稿時刻-->
             <p><%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></p>
         </div>
+        
         
         <div class="post-comments-container">
             <div class="commnets-title">

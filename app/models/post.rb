@@ -13,4 +13,8 @@ class Post < ApplicationRecord
     def liking_count
         self.liked_user.length
     end
+    
+    def comments_count
+        self.comments.length
+    end
 end
