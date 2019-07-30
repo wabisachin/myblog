@@ -78,3 +78,4 @@ group :production do
 end
 
 ruby '2.5.1'
+gem "aws-sdk-s3", require: false
