@@ -9,10 +9,15 @@
         <img src="assets/main.jpg">
     </div>
     <!--新規投稿-->
+    
     <div class="new-post-wrapper container col-sm-8 col-sm-offset-2">
         <h2 class="heading-new-post">さあ、あなたも今日のひらめきを投稿しよう！</h2>
-        <!--投稿の中身は部分テンプレート内に記述-->
-        <%= render partial: 'top/new_post', locals: {post: @post} %>
+        <!--ログインユーザーが存在する時だけ投稿画面を表示-->
+        <% if current_user %>
+            <!--投稿の中身は部分テンプレート内に記述-->
+            <%= render partial: 'top/new_post', locals: {post: @post} %>
+        <% end %>
+        
     </div>
      
     
