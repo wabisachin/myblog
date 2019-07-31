@@ -1,0 +1,19 @@
+
+var text_content = $(".text-content").val();
+console.log(text_content);
+
+    <!--フラッシュコメントの追加-->
+    <!--投稿内容の中身が空かどうかで条件分岐-->
+if (text_content == "" ) {
+    $(".flash-comment").removeClass('d-none');
+} else {
+    $(".flash-comment").addClass('d-none');
+}
+
+$(".text-content").val('');
+
+
+
+$('#post-contents').html('<%= escape_javascript(render partial: "top/post",collection: @posts) %>');
+
+

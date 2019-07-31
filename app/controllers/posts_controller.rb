@@ -16,12 +16,13 @@ class PostsController < ApplicationController
     
     def create
         post = Post.create(post_params)
+        @posts = Post.order(created_at: "DESC").page(params[:page]).per(5)
         # 投稿に成功した場合、失敗した場合の分岐
         if post.text.present?
-            redirect_to :root
+            # redirect_to :root
         else
-            flash[:danger] = "投稿するには最低１文字以上必要です"
-            redirect_to action: "new"
+            # flash[:danger] = "投稿するには最低１文字以上必要です"
+            # redirect_to action: "new"
         end
     end
     

@@ -1,15 +1,15 @@
 <div class = "new-post-wrapper container">
 
     <%= form_for @post, html:{class: "form-horizontal"} do |f| %>
-                <div class="form-group">
-                    <%= f.label :post, "投稿内容", class: "heading d-block" %>
-                    <%= f.text_area :text, placeholder:"入力してください",maxlength:"400", class:"text-content form-controll",size:"60x5" %>
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
-                </div>
-                <div class="form-group">
-                    <%= f.submit "投稿", class:"btn-submit btn btn-primary" %>
-                </div>
-                
-            <% end %>
-    
+        <div class="form-group">
+            <%= f.label :post, "投稿内容", class: "heading d-block" %>
+            <%= f.text_area :text, placeholder:"入力してください",maxlength:"400", class:"text-content form-controll",size:"60x5" %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+        </div>
+        <div class="form-group">
+            <%= f.submit "投稿", class:"btn-submit btn btn-primary" %>
+        </div>
+        
+    <% end %>
+
 </div>
